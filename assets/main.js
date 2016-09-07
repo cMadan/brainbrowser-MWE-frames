@@ -90,11 +90,12 @@ function handleBrainz(viewer) {
   // Load a model into the scene.
   viewer.loadModelFromURL(modelUrl, {
     //format: 'vtk',
-    complete: function(){
-      viewer.loadIntensityDataFromURL(overlayUrl, {
-        //format: "csv",
-        name: "Cortical Thickness"
-      });
+    
+    // complete: function(){
+    //   viewer.loadIntensityDataFromURL(overlayUrl, {
+    //     //format: "csv",
+    //     name: "Cortical Thickness"
+    //   });
     }
   });
 
