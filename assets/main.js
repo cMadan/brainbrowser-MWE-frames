@@ -44,6 +44,8 @@ var inputs = queryStringToHash();
 
 var modelUrl = inputs.model || './models/vtk/freesurfer_curvature.vtk'
 var overlayUrl = inputs.overlay || './models/vertices.csv'
+var urlsplit
+var ext
 var colormaps = {}
 BrainBrowser.config.get("color_maps").forEach(function(val, idx, arr){colormaps[val.name] = val.url})
 
