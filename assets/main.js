@@ -1,6 +1,18 @@
-BrainBrowser.config.set("model_types.vtk.worker", "vtk.worker.js");
+// load all of the workers
+BrainBrowser.config.set("model_types.json.worker", "json.worker.js");
+BrainBrowser.config.set("model_types.mniobj.worker", "mniobj.worker.js");
+BrainBrowser.config.set("model_types.wavefrontobj.worker", "wavefrontobj.worker.js");
+BrainBrowser.config.set("model_types.freesurferbin.worker", "freesurferbin.worker.js");
+BrainBrowser.config.set("model_types.freesurferbin.binary", true);
+BrainBrowser.config.set("model_types.freesurferasc.worker", "freesurferasc.worker.js");
+BrainBrowser.config.set("intensity_data_types.text.worker", "text.intensity.worker.js");
+BrainBrowser.config.set("intensity_data_types.freesurferbin.worker", "freesurferbin.intensity.worker.js");
+BrainBrowser.config.set("intensity_data_types.freesurferbin.binary", true);
+BrainBrowser.config.set("intensity_data_types.freesurferasc.worker", "freesurferasc.intensity.worker.js");
+// keep the vtk and csv ones too
 BrainBrowser.config.set("model_types.vtk.worker", "vtk.worker.js");
 BrainBrowser.config.set("intensity_data_types.csv.worker", "csv.intensity.worker.js");
+
 BrainBrowser.config.set('worker_dir', './brainbrowser-2.5.0/workers/');
 BrainBrowser.config.set("color_maps", [
   {
@@ -93,15 +105,20 @@ function handleBrainz(viewer) {
     ext = urlsplit.slice(-1).pop();
 
     if (ext == "pial" || ext == "white") {
-      format: 'freesurferbin';
+      format: 'freesurferasc';
     }
     else {
-      format: ext;
+      format: ext; // e.g., vtk
     }
 
     complete: function(){
       viewer.loadIntensityDataFromURL(overlayUrl, {
-        format: "csv",
+        if (ext == "thickness" || ext == "curv") {
+          format: 'freesurferasc';
+        }
+        else {
+          format: ext; // e.g., csv
+        }
         name: "Cortical Thickness"
       });
     }
