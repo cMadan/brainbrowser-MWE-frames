@@ -101,20 +101,20 @@ function handleBrainz(viewer) {
 
   // Load a model into the scene.
   viewer.loadModelFromURL(modelUrl, {
-    urlsplit = modelUrl.split(".");
-    ext = urlsplit.slice(-1).pop();
+    urlsplit = modelUrl.split("."),
+    ext = urlsplit.slice(-1).pop(),
 
     if (ext == "pial" || ext == "white") {
-      format: 'freesurferasc';
+      format: 'freesurferasc',
     }
     else {
-      format: ext; // e.g., vtk
+      format: ext, // e.g., vtk
     }
 
     complete: function(){
       viewer.loadIntensityDataFromURL(overlayUrl, {
         if (ext == "thickness" || ext == "curv") {
-          format: 'freesurferasc';
+          format: 'freesurferasc',
         }
         else {
           format: ext; // e.g., csv
