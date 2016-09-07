@@ -96,7 +96,7 @@ function handleBrainz(viewer) {
     //     //format: "csv",
     //     name: "Cortical Thickness"
     //   });
-    }
+    //}
   });
 
 }
