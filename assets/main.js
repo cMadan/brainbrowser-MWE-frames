@@ -89,8 +89,16 @@ function handleBrainz(viewer) {
 
   // Load a model into the scene.
   viewer.loadModelFromURL(modelUrl, {
-    format: 'vtk',
-    
+    urlsplit = modelUrl.split(".");
+    ext = urlsplit.slice(-1).pop();
+
+    if (ext == "pial" || ext == "white") {
+      format: 'freesurferbin';
+    }
+    else {
+      format: ext;
+    }
+
     complete: function(){
       viewer.loadIntensityDataFromURL(overlayUrl, {
         format: "csv",
