@@ -54,8 +54,8 @@ else {
   format = ext; // e.g., vtk
 }
 modelFormat = format;
-urlsplit = modelUrl.split("."),
-ext = urlsplit.slice(-1).pop(),
+urlsplit = modelUrl.split(".");
+ext = urlsplit.slice(-1).pop();
 if (ext == 'thickness' || ext == 'curv') {
   format = 'freesurferasc';
 }
