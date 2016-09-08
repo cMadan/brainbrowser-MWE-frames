@@ -134,7 +134,6 @@ function handleBrainz(viewer) {
     }
   });
 }
-}
 
 
 // taken from https://css-tricks.com/snippets/jquery/get-query-params-object/
