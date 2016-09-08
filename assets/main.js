@@ -48,16 +48,15 @@ var overlayUrl = inputs.overlay || './models/vertices.csv'
 urlsplit = modelUrl.split(".");
 ext = urlsplit.slice(-1).pop();
 if (ext == 'pial' || ext == 'white') {
-  format = 'freesurferasc';
+  format = 'freesurferbin';
 }
 else {
   format = ext; // e.g., vtk
 }
 modelFormat = format;
-//
 urlsplit = overlayUrl.split(".");
 ext = urlsplit.slice(-1).pop();
-if (ext == 'thickness' || ext == 'curv') {
+if (ext == 'asc' ) {
   format = 'freesurferasc';
 }
 else {
@@ -109,7 +108,6 @@ function handleBrainz(viewer) {
     cmap.onChange(function(newC){
         viewer.loadColorMapFromURL(colormaps[newC])
     })
-    
   });
 
   viewer.addEventListener("loadcolormap", function(event) {
