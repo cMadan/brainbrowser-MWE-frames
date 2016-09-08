@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="./assets/styles.css">
+  <script type="text/javascript" src="./brainbrowser-2.5.0/brainbrowser.surface-viewer.min.js"></script>
+</head>
+<body>
+<div id="vertex-data">
+  <h3>Select a point on the surface (shift-click or touch)</h3>
+  <div>X: <span id="pick-x" class="pick-data"></span></div>
+  <div>Y: <span id="pick-y" class="pick-data"></span></div>
+  <div>Z: <span id="pick-z" class="pick-data"></span></div>
+  <div>Vertex number: <span id="pick-index" class="pick-data"></span></div>
+  <div id="pick-value-wrapper" style="display:none">
+    Value: <input id="pick-value" class="pick-data" size="5">
+    <span id="pick-color" class="pick-data"></span>
+    <div id="intensity-data-export" style="display:none">
+      <a id="intensity-data-export-link" target="_blank">Export new intensity values</a>
+    </div>
+  </div>
+</div>
+<div id="brainbrowser"></div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.15.0/lodash.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5.1/dat.gui.min.js"></script>
+<script type="text/javascript" src="./assets/main.js"></script>
+</body>
+</html>

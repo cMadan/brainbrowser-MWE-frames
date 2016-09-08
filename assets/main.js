@@ -72,6 +72,7 @@ BrainBrowser.config.get("color_maps").forEach(function(val, idx, arr){colormaps[
 // Pulled out this function from the start call so that it's not so nested.
 function handleBrainz(viewer) {
   var meshgui;
+  var picked_object = null;
   window.viewer = viewer;
   window.gui = gui;
 
@@ -132,6 +133,70 @@ function handleBrainz(viewer) {
       });
     }
   });
+
+  // CRM re-adding click functionality
+      $("#brainbrowser").click(function(event) {
+      if (!event.shiftKey && !event.ctrlKey) return;
+      if (viewer.model.children.length === 0) return;
+
+      var pick_info          = viewer.pick();
+      var model_data, intensity_data;
+      var value, label, text;
+
+      if (pick_info) {
+        $("#pick-x").html(pick_info.point.x.toPrecision(4));
+        $("#pick-y").html(pick_info.point.y.toPrecision(4));
+        $("#pick-z").html(pick_info.point.z.toPrecision(4));
+        $("#pick-index").html(pick_info.index);
+
+        picked_object  = pick_info.object;
+        model_data     = viewer.model_data.get(picked_object.userData.model_name);
+        intensity_data = model_data.intensity_data[0];
+
+        if (intensity_data) {
+          if (event.ctrlKey) {
+            value = parseFloat($("#paint-value").val());
+
+            if (BrainBrowser.utils.isNumeric(value)) {
+              viewer.setIntensity(intensity_data, pick_info.index, value);
+            }
+          }
+
+          value = intensity_data.values[pick_info.index];
+          $("#pick-value").val(value.toString().slice(0, 7));
+          $("#pick-color").css("background-color", "#" + viewer.color_map.colorFromValue(value, {
+            hex: true,
+            min: intensity_data.range_min,
+            max: intensity_data.range_max
+          }));
+          label = atlas_labels[value];
+          if (label) {
+            text = label + '<BR><a target="_blank" href="http://www.ncbi.nlm.nih.gov/pubmed/?term=' +
+              label.split(/\s+/).join("+") +
+              '">Search on PubMed</a>';
+            text += '<BR><a target="_blank" href="http://scholar.google.com/scholar?q=' +
+              label.split(/\s+/).join("+") +
+              '">Search on Google Scholar</a>';
+          } else {
+            text = "None";
+          }
+          $("#pick-label").html(text);
+        }
+
+        if ($("#centric_rotation").is(":checked")) {
+          if ($("#pick-x").html() === "" && $("#pick-y").html() === "" && $("#pick-z").html() === "") {return;}
+          setCenterRotation();
+        }
+
+      } else {
+        $("#pick-x").html("");
+        $("#pick-y").html("");
+        $("#pick-z").html("");
+        $("#pick-index").html("");
+      }
+
+    });
+
 
 }
 
