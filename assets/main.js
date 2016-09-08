@@ -12,7 +12,8 @@ BrainBrowser.config.set("intensity_data_types.freesurferasc.worker", "freesurfer
 // keep the vtk and csv ones too
 BrainBrowser.config.set("model_types.vtk.worker", "vtk.worker.js");
 BrainBrowser.config.set("intensity_data_types.csv.worker", "csv.intensity.worker.js");
-
+// hacky solution?
+BrainBrowser.config.set("intensity_data_types.asc.worker", "asc.intensity.worker.js");
 BrainBrowser.config.set('worker_dir', './brainbrowser-2.5.0/workers/');
 BrainBrowser.config.set("color_maps", [
   {
