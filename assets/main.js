@@ -134,60 +134,6 @@ function handleBrainz(viewer) {
     }
   });
 }
-
-  // CRM re-adding click functionality
-  $("#brainbrowser").click(function(event) {
-    if (!event.shiftKey && !event.ctrlKey) return;
-    pick(viewer.mouse.x, viewer.mouse.y, event.ctrlKey);
-  });
-
-  function pick(x, y, paint) {
-    if (viewer.model.children.length === 0) return;
-
-    var pick_info = viewer.pick(x, y);
-    var model_data, intensity_data;
-    var value, label, text;
-
-    if (pick_info) {
-      $("#pick-x").html(pick_info.point.x.toPrecision(4));
-      $("#pick-y").html(pick_info.point.y.toPrecision(4));
-      $("#pick-z").html(pick_info.point.z.toPrecision(4));
-      $("#pick-index").html(pick_info.index);
-
-      picked_object = pick_info.object;
-      model_data = viewer.model_data.get(picked_object.userData.model_name);
-      intensity_data = model_data.intensity_data[0];
-
-      if (intensity_data) {
-        if (paint) {
-          value = parseFloat($("#paint-value").val());
-
-          if (BrainBrowser.utils.isNumeric(value)) {
-            viewer.setIntensity(pick_info.index, value);
-          }
-        }
-
-        value = intensity_data.values[pick_info.index];
-        $("#pick-value").val(value.toString().slice(0, 7));
-        $("#pick-color").css("background-color", "#" + viewer.color_map.colorFromValue(value, {
-          hex: true,
-          min: intensity_data.range_min,
-          max: intensity_data.range_max
-        }));
-
-    } else {
-      picked_object = null;
-      $("#pick-x").html("");
-      $("#pick-y").html("");
-      $("#pick-z").html("");
-      $("#pick-index").html("");
-      $("#pick-value").val("");
-      $("#pick-color").css("background-color", "#000000");
-    }
-
-    viewer.updated = true;
-  }
-
 }
 
 
