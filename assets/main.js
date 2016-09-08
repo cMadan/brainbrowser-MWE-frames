@@ -133,6 +133,7 @@ function handleBrainz(viewer) {
       });
     }
   });
+}
 
   // CRM re-adding click functionality
   $("#brainbrowser").click(function(event) {
@@ -188,7 +189,7 @@ function handleBrainz(viewer) {
   }
 
 }
-}
+
 
 // taken from https://css-tricks.com/snippets/jquery/get-query-params-object/
 function queryStringToHash(str){
