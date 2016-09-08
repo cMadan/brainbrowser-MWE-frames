@@ -12,8 +12,6 @@ BrainBrowser.config.set("intensity_data_types.freesurferasc.worker", "freesurfer
 // keep the vtk and csv ones too
 BrainBrowser.config.set("model_types.vtk.worker", "vtk.worker.js");
 BrainBrowser.config.set("intensity_data_types.csv.worker", "csv.intensity.worker.js");
-// hacky solution?
-BrainBrowser.config.set("intensity_data_types.asc.worker", "asc.intensity.worker.js");
 BrainBrowser.config.set('worker_dir', './brainbrowser-2.5.0/workers/');
 BrainBrowser.config.set("color_maps", [
   {
@@ -46,7 +44,7 @@ var inputs = queryStringToHash();
 var modelUrl = inputs.model || './models/vtk/freesurfer_curvature.vtk'
 var overlayUrl = inputs.overlay || './models/vertices.csv'
 // determine model/overlay file formats
-urlsplit = modelUrl.split(".");
+urlsplit = modelUrl.split('.');
 ext = urlsplit.slice(-1).pop();
 if (ext == 'pial' || ext == 'white') {
   format = 'freesurferbin';
@@ -55,9 +53,9 @@ else {
   format = ext; // e.g., vtk
 }
 modelFormat = format;
-urlsplit = overlayUrl.split(".");
+urlsplit = overlayUrl.split('.');
 ext = urlsplit.slice(-1).pop();
-if (ext == 'asc' ) {
+if (ext == 'asc') {
   format = 'freesurferasc';
 }
 else {
