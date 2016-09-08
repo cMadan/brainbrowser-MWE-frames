@@ -45,8 +45,8 @@ var inputs = queryStringToHash();
 var modelUrl = inputs.model || './models/vtk/freesurfer_curvature.vtk'
 var overlayUrl = inputs.overlay || './models/vertices.csv'
 // determine model/overlay file formats
-urlsplit = modelUrl.split("."),
-ext = urlsplit.slice(-1).pop(),
+urlsplit = modelUrl.split(".");
+ext = urlsplit.slice(-1).pop();
 if (ext == 'pial' || ext == 'white') {
   format = 'freesurferasc';
 }
