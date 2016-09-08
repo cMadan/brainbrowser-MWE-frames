@@ -44,8 +44,6 @@ var inputs = queryStringToHash();
 
 var modelUrl = inputs.model || './models/vtk/freesurfer_curvature.vtk'
 var overlayUrl = inputs.overlay || './models/vertices.csv'
-var urlsplit
-var ext
 var colormaps = {}
 BrainBrowser.config.get("color_maps").forEach(function(val, idx, arr){colormaps[val.name] = val.url})
 
@@ -102,25 +100,32 @@ function handleBrainz(viewer) {
 
 
   // Load a model into the scene.
+  urlsplit = modelUrl.split("."),
+  ext = urlsplit.slice(-1).pop(),
+  if (ext == 'pial' || ext == 'white') {
+    format = 'freesurferasc';
+  }
+  else {
+    format = ext;
+  }
+  modelFormat = format;
+  urlsplit = modelUrl.split("."),
+  ext = urlsplit.slice(-1).pop(),
+  if (ext == 'thickness' || ext == 'curv') {
+    format = 'freesurferasc';
+  }
+  else {
+    format = ext; // e.g., csv
+  }
+  overlayFormat = format;
+  //
   viewer.loadModelFromURL(modelUrl, {
-    urlsplit = modelUrl.split("."),
-    ext = urlsplit.slice(-1).pop(),
-
-    if (ext == "pial" || ext == "white") {
-      format: 'freesurferasc',
-    }
-    else {
-      format: ext, // e.g., vtk
-    }
+    format: modelFormat,
 
     complete: function(){
       viewer.loadIntensityDataFromURL(overlayUrl, {
-        if (ext == "thickness" || ext == "curv") {
-          format: 'freesurferasc',
-        }
-        else {
-          format: ext; // e.g., csv
-        }
+        format: overlayFormat,
+
         name: "Cortical Thickness"
       });
     }
