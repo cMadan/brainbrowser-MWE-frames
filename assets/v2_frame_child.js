@@ -127,37 +127,6 @@ function handleBrainz(viewer) {
   viewer.loadColorMapFromURL(BrainBrowser.config.get("color_maps")[0].url);
 
 
-// load multi models
-var f;
-f=0;
-//for (f=0; f<modelUrl.length; f++) {
-  console.log(f);
-  // Load a model into the scene.
-    viewer.loadModelFromURL(modelUrl[f], {
-    format: modelFormat,
-
-    complete: function(){
-      viewer.loadIntensityDataFromURL(overlayUrl[f], {
-        format: overlayFormat,
-        name: "thick1"
-      });
-    }
-  });
-//};
-f=1;
-//for (f=0; f<modelUrl.length; f++) {
-  console.log(f);
-  // Load a model into the scene.
-  viewer.loadModelFromURL(modelUrl[f], {
-    format: modelFormat,
-
-    complete: function(){
-      viewer.loadIntensityDataFromURL(overlayUrl[f], {
-        format: overlayFormat,
-        name: "thick2"
-      });
-    }
-  });
 
   // CRM re-adding pick functionality
   function pick(x,y,paint) {
@@ -215,3 +184,36 @@ f=1;
 function queryStringToHash(str){
   return (str || document.location.search).replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0];
 }
+
+// load multi models
+var f;
+f=0;
+//for (f=0; f<modelUrl.length; f++) {
+  console.log(f);
+  // Load a model into the scene.
+    viewer.loadModelFromURL(modelUrl[f], {
+    format: modelFormat,
+
+    complete: function(){
+      viewer.loadIntensityDataFromURL(overlayUrl[f], {
+        format: overlayFormat,
+        name: "thick1"
+      });
+    }
+  });
+//};
+
+// f=1;
+// //for (f=0; f<modelUrl.length; f++) {
+//   console.log(f);
+//   // Load a model into the scene.
+//   viewer.loadModelFromURL(modelUrl[f], {
+//     format: modelFormat,
+
+//     complete: function(){
+//       viewer.loadIntensityDataFromURL(overlayUrl[f], {
+//         format: overlayFormat,
+//         name: "thick2"
+//       });
+//     }
+//   });
