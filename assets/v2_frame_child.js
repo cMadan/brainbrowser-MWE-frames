@@ -42,23 +42,19 @@ BrainBrowser.SurfaceViewer.start('brainbrowser', handleBrainz);
 var gui = new dat.GUI();
 var inputs = queryStringToHash();
 
-var modelUrl = inputs.model
-var overlayUrl = inputs.overlay
-//if multiple input models, need to split then
-modelUrl = modelUrl.split(';');
-overlayUrl = overlayUrl.split(';');
-
+var modelUrl = inputs.model || './models/vtk/freesurfer_curvature.vtk'
+var overlayUrl = inputs.overlay || './models/vertices.csv'
 // determine model/overlay file formats
-urlsplit = modelUrl[0].split('.');
+urlsplit = modelUrl.split('.');
 ext = urlsplit.slice(-1).pop();
-if (ext == 'pial' || ext == 'white' || ext == 'inflated') {
+if (ext == 'pial' || ext == 'white') {
   format = 'freesurferbin';
 }
 else {
   format = ext; // e.g., vtk
 }
 modelFormat = format;
-urlsplit = overlayUrl[0].split('.');
+urlsplit = overlayUrl.split('.');
 ext = urlsplit.slice(-1).pop();
 if (ext == 'thickness' || ext == 'curv') {
   format = 'freesurferbin';
@@ -79,6 +75,7 @@ BrainBrowser.config.get("color_maps").forEach(function(val, idx, arr){colormaps[
 // Pulled out this function from the start call so that it's not so nested.
 function handleBrainz(viewer) {
   var meshgui;
+  var picked_object = null;
   window.viewer = viewer;
   window.gui = gui;
 
@@ -126,21 +123,20 @@ function handleBrainz(viewer) {
   viewer.setClearColor(0XFFFFFF);
   viewer.loadColorMapFromURL(BrainBrowser.config.get("color_maps")[0].url);
 
-// load multi models
-var f;
-for (f=0; f<modelUrl.length; f++) {
+
   // Load a model into the scene.
-  viewer.loadModelFromURL(modelUrl[f], {
+  viewer.loadModelFromURL(modelUrl, {
     format: modelFormat,
 
     complete: function(){
-      viewer.loadIntensityDataFromURL(overlayUrl[f], {
+      viewer.loadIntensityDataFromURL(overlayUrl, {
         format: overlayFormat,
-        name: "overlay"
+
+        name: "Cortical Thickness"
       });
     }
   });
-}
+
 
   // CRM re-adding pick functionality
   function pick(x,y,paint) {
