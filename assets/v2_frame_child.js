@@ -138,11 +138,9 @@ function handleBrainz(viewer) {
 
 
 // load multi models
-f=0;
 for (f=0; f<modelUrl.length; f++) {
+  sleep(5000);
   // Load a model into the scene.
-  (function(){
-
   viewer.loadModelFromURL(modelUrl[f], {
     format: modelFormat,
   complete: function() {
@@ -154,7 +152,6 @@ for (f=0; f<modelUrl.length; f++) {
   });
   }
   });
-})();
 };
 
 
@@ -214,3 +211,13 @@ for (f=0; f<modelUrl.length; f++) {
 function queryStringToHash(str){
   return (str || document.location.search).replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0];
 }
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
