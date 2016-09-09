@@ -96,8 +96,8 @@ function handleBrainz(viewer) {
   viewer.addEventListener('displaymodel', function(brainBrowserModel) {
     window.brainBrowserModel = brainBrowserModel;
 
-    meshgui = gui.addFolder(brainBrowserModel.model_data.name);
-    meshgui.open();
+    // meshgui = gui.addFolder(brainBrowserModel.model_data.name);
+    // meshgui.open();
 
   });
 
