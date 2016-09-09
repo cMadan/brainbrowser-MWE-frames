@@ -135,7 +135,7 @@ function handleBrainz(viewer) {
   });
 
   // CRM re-adding pick functionality
-  function pick(x, y, paint) {
+  function pick(x, y) {
     if (viewer.model.children.length === 0) return;
 
     var annotation_display = $("#annotation-display");
@@ -235,7 +235,7 @@ function handleBrainz(viewer) {
     viewer.updated = true;
   }
 }
-$("#brainbrowser").click(function(event) {
+$("body").click(function(event) {
   if (!event.shiftKey && !event.ctrlKey) return;
   viewer.pick(viewer.mouse.x, viewer.mouse.y);
 });
