@@ -139,6 +139,7 @@ f=0;
     complete: function(){
       viewer.loadIntensityDataFromURL(overlayUrl[f], {
         format: overlayFormat,
+        name: "thick1"
       });
     }
   });
@@ -153,6 +154,7 @@ f=1;
     complete: function(){
       viewer.loadIntensityDataFromURL(overlayUrl[f], {
         format: overlayFormat,
+        name: "thick2"
       });
     }
   });
