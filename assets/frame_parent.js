@@ -1,3 +1,6 @@
+$('#view3d').onreadystatechange = function() {
+	    if ( $('#view3d').readyState == 'complete' ) {
+
 $('#view3d').contents().find("#brainbrowser").click(function(event) {
   $("#pick-x").html($('#view3d').contents().find('#pick-x').text());
   $("#pick-y").html($('#view3d').contents().find('#pick-y').text());
@@ -5,3 +8,6 @@ $('#view3d').contents().find("#brainbrowser").click(function(event) {
   $("#pick-index").html($('#view3d').contents().find('#pick-index').text());
   $("#pick-value").html($('#view3d').contents().find('#pick-value').text());
 });
+
+	    }
+	}
