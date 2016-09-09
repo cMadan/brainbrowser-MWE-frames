@@ -139,8 +139,10 @@ function handleBrainz(viewer) {
 
 // load multi models
 f=0;
-//for (f=0; f<modelUrl.length; f++) {
+for (f=0; f<modelUrl.length; f++) {
   // Load a model into the scene.
+  (function(){
+
   viewer.loadModelFromURL(modelUrl[f], {
     format: modelFormat,
   complete: function() {
@@ -152,7 +154,8 @@ f=0;
   });
   }
   });
-//};
+})();
+};
 
 
 
