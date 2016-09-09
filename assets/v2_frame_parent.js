@@ -6,5 +6,6 @@
 	  	$("#pick-z").html($('#view3d').contents().find('#pick-z').text());
 	  	$("#pick-index").html($('#view3d').contents().find('#pick-index').text());
 	  	$("#pick-value").html($('#view3d').contents().find('#pick-value').text());
+	  	$("#pick-fname").html($('#view3d').contents().find('#pick-fname').text());
 	});
 });
