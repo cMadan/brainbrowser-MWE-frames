@@ -75,7 +75,6 @@ BrainBrowser.config.get("color_maps").forEach(function(val, idx, arr){colormaps[
 // Pulled out this function from the start call so that it's not so nested.
 function handleBrainz(viewer) {
   var meshgui;
-  var picked_object = null;
   window.viewer = viewer;
   window.gui = gui;
 
@@ -143,7 +142,6 @@ function handleBrainz(viewer) {
     if (viewer.model.children.length === 0) return;
 
     var pick_info = viewer.pick(x,y);
-    var model_data, intensity_data;
     var value, label, text;
 
     if (pick_info) {
@@ -151,32 +149,7 @@ function handleBrainz(viewer) {
       $("#pick-y").html(pick_info.point.y.toPrecision(4));
       $("#pick-z").html(pick_info.point.z.toPrecision(4));
       $("#pick-index").html(pick_info.index);
-
-      // some more can be stripped from here still
-      picked_object = pick_info.object;
-      model_data = viewer.model_data.get(picked_object.userData.model_name);
-      intensity_data = model_data.intensity_data[0];
-
       $("#pick-value").html(intensityData.values[pick_info.index].toPrecision(4));
-
-      // if (intensity_data) {
-      //   if (paint) {
-      //     value = parseFloat($("#paint-value").val());
-
-      //     if (BrainBrowser.utils.isNumeric(value)) {
-      //       viewer.setIntensity(pick_info.index, value);
-      //     }
-      //   }
-
-      //   value = intensity_data.values[pick_info.index];
-      //   $("#pick-value").val(value.toString().slice(0, 7));
-      //   $("#pick-color").css("background-color", "#" + viewer.color_map.colorFromValue(value, {
-      //     hex: true,
-      //     min: intensity_data.range_min,
-      //     max: intensity_data.range_max
-      //   }));
-      //   $("#pick-label").html(text);
-      // }
 
     } else {
       picked_object = null;
