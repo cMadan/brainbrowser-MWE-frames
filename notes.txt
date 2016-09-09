@@ -11,6 +11,9 @@ https://cmadan.github.io/brainbrowser-minimal-example/pick.html?model=https://ww
 # iframe!!
 https://cmadan.github.io/brainbrowser-minimal-example/pick_frame_parent.html
 
+# iframe v2
+https://cmadan.github.io/brainbrowser-minimal-example/v2_pick_frame_parent.html
+
 # gen asc -- not needed!
 mris_convert -c lh.thickness lh.pial lh.thickness.asc
 mris_convert -c rh.thickness rh.pial rh.thickness.asc
