@@ -145,7 +145,7 @@ function handleBrainz(viewer) {
       format: modelFormat,
     });
   };
-  for (att=0; att<100; att++) {
+  for (att=0; att<20; att++) {
   surf=0;
   while (surf < modelUrl.length) {
     viewer.loadIntensityDataFromURL(overlayUrl[surf], {
