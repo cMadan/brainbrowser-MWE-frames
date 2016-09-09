@@ -47,6 +47,8 @@ var modelUrl = inputs.model
 var overlayUrl = inputs.overlay
 modelUrl = modelUrl.split(';');
 overlayUrl = overlayUrl.split(';');
+var modelFname;
+var overlayFname;
 for (f=0; f<modelUrl.length; f++) {
   temp = modelUrl[f].split('/');
   modelFname[f] = temp.slice(-1).pop();
