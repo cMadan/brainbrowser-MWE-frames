@@ -149,6 +149,7 @@ function handleBrainz(viewer) {
       $("#pick-z").html(pick_info.point.z.toPrecision(4));
       $("#pick-index").html(pick_info.index);
 
+      // some more can be stripped from here still
       picked_object = pick_info.object;
       model_data = viewer.model_data.get(picked_object.userData.model_name);
       intensity_data = model_data.intensity_data[0];
@@ -212,8 +213,12 @@ function handleBrainz(viewer) {
   }, false);
 }
 
-
 // taken from https://css-tricks.com/snippets/jquery/get-query-params-object/
 function queryStringToHash(str){
   return (str || document.location.search).replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0];
+}
+
+// ping the parent that iframe is ready to go
+$(document).load(function() {   // or .ready()
+   parent.iframeloaded();
 }
