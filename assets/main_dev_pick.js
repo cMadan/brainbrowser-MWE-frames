@@ -136,14 +136,13 @@ function handleBrainz(viewer) {
 }
 
 // CRM re-adding pick functionality
-function pick(x,y,paint) {
+function pick(x,y) {
   if (viewer.model.children.length === 0) return;
 
   var pick_info = pick(x,y);
   var model_data, intensity_data;
   var value, label, text;
 
-  console.log(pick_info)
   if (pick_info) {
     $("#pick-x").html(pick_info.point.x.toPrecision(4));
     $("#pick-y").html(pick_info.point.y.toPrecision(4));
@@ -188,7 +187,7 @@ function pick(x,y,paint) {
 
 $("#brainbrowser").click(function(event) {
   if (!event.shiftKey && !event.ctrlKey) return;
-  viewer.pick(viewer.mouse.x, viewer.mouse.y, event.ctrlKey);
+    pick(viewer.mouse.x, viewer.mouse.y, event.ctrlKey);
 });
 
 
