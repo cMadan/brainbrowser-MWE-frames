@@ -171,7 +171,7 @@ for (surf=0; surf<modelUrl.length; surf++) {
       $("#pick-z").html(pick_info.point.z.toPrecision(4));
       $("#pick-index").html(pick_info.index);
       $("#pick-value").html(intensityData.values[pick_info.index].toPrecision(4));
-      $("#pick-fname").html(pick_info.object.name.split('_').slice(0));
+      $("#pick-fname").html(pick_info.object.name.split('_').slice(0).shift());
 
     } else {
       picked_object = null;
