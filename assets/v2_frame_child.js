@@ -145,6 +145,9 @@ function handleBrainz(viewer) {
       format: modelFormat,
     });
   };
+
+ $( window ).load(function() {
+
   for (att=0; att<5; att++) { // stupid hack to force things to load
   for (surf=0; surf<modelUrl.length; surf++) {
     viewer.loadIntensityDataFromURL(overlayUrl[surf], {
@@ -153,8 +156,8 @@ function handleBrainz(viewer) {
       model_name: modelFname[surf],
     });
   };
+  };
 };
-
 
   function pick(x,y,paint) {
     if (viewer.model.children.length === 0) return;
