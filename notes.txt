@@ -5,6 +5,9 @@ https://cmadan.github.io/brainbrowser-minimal-example/?model=https://dl.dropboxu
 pial & thickness.asc
 https://cmadan.github.io/brainbrowser-minimal-example/?model=https://www.cmadan.com/temp/mindcontrol/lh.pial&overlay=https://www.cmadan.com/temp/mindcontrol/lh.thickness.asc
 
+pick-pulls-data:
+https://cmadan.github.io/brainbrowser-minimal-example/pick.html?model=https://www.cmadan.com/temp/mindcontrol/lh.pial&overlay=https://www.cmadan.com/temp/mindcontrol/lh.thickness.asc
+
 # gen asc
 mris_convert -c lh.thickness lh.pial lh.thickness.asc
 mris_convert -c rh.thickness rh.pial rh.thickness.asc
