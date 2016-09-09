@@ -138,30 +138,25 @@ function handleBrainz(viewer) {
 
 
   // load multi models
+  surf = 0;
   for (surf=0; surf<modelUrl.length; surf++) {
     // Load a model into the scene.
     viewer.loadModelFromURL(modelUrl[surf], {
       format: modelFormat,
     });
   };
-  var intensityData;
-  if (typeof intensityData === "undefined") {
-    surf=0;
+  for (att=0; att<100; att++) {
+  surf=0;
+  while (surf < modelUrl.length) {
     viewer.loadIntensityDataFromURL(overlayUrl[surf], {
       format: overlayFormat,
       name: overlayFname[surf],
       model_name: modelFname[surf],
     });
-  };
-  surf = 0;
-  if (overlayFname[surf] == intensityData.name) {
     surf++;
-    viewer.loadIntensityDataFromURL(overlayUrl[surf], {
-      format: overlayFormat,
-      name: overlayFname[surf],
-      model_name: modelFname[surf],
-    });
   }
+  }
+  
 
 
   function pick(x,y,paint) {
