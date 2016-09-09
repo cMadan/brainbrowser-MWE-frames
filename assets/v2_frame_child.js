@@ -137,24 +137,25 @@ function handleBrainz(viewer) {
   viewer.loadColorMapFromURL(BrainBrowser.config.get("color_maps")[0].url);
 
 
-// load multi models
-var surf;
-for (surf=0; surf<modelUrl.length; surf++) {
-  // Load a model into the scene.
-  viewer.loadModelFromURL(modelUrl[surf], {
-    format: modelFormat,
-  });
-};
-for (surf=0; surf<modelUrl.length; surf++) {
-  viewer.loadIntensityDataFromURL(overlayUrl[surf], {
-    format: overlayFormat,
-    name: overlayFname[surf],
-    model_name: modelFname[surf],
-  });
+  // load multi models
+  var surf;
+  for (surf=0; surf<modelUrl.length; surf++) {
+    // Load a model into the scene.
+    viewer.loadModelFromURL(modelUrl[surf], {
+      format: modelFormat,
+    });
+  };
+  for (att=0; att<5; att++) { // stupid hack to force things to load
+  for (surf=0; surf<modelUrl.length; surf++) {
+    viewer.loadIntensityDataFromURL(overlayUrl[surf], {
+      format: overlayFormat,
+      name: overlayFname[surf],
+      model_name: modelFname[surf],
+    });
+  };
 };
 
 
-  // CRM re-adding pick functionality
   function pick(x,y,paint) {
     if (viewer.model.children.length === 0) return;
 
@@ -209,13 +210,3 @@ for (surf=0; surf<modelUrl.length; surf++) {
 function queryStringToHash(str){
   return (str || document.location.search).replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0];
 }
-
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
-}
-
