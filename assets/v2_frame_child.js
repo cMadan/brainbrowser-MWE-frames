@@ -129,7 +129,8 @@ function handleBrainz(viewer) {
 
 // load multi models
 var f;
-for (f=0; f<modelUrl.length; f++) {
+f=0;
+//for (f=0; f<modelUrl.length; f++) {
   console.log(f);
   // Load a model into the scene.
   viewer.loadModelFromURL(modelUrl[f], {
@@ -143,7 +144,7 @@ for (f=0; f<modelUrl.length; f++) {
       });
     }
   });
-};
+//};
 
   // CRM re-adding pick functionality
   function pick(x,y,paint) {
