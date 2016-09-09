@@ -136,6 +136,7 @@ for (f=0; f<modelUrl.length; f++) {
     complete: function(){
       viewer.loadIntensityDataFromURL(overlayUrl[f], {
         format: overlayFormat,
+        name: "overlay"
       });
     }
   });
