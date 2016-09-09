@@ -1,4 +1,4 @@
- $( window ).load(function() 
+ $( window ).load(function() {
  	// http://stackoverflow.com/questions/16781758/my-script-only-working-from-console
  	$('#view3d').contents().find("#brainbrowser").click(function(event) {
 	  	$("#pick-x").html($('#view3d').contents().find('#pick-x').text());
