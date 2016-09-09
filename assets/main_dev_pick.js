@@ -153,24 +153,26 @@ function handleBrainz(viewer) {
       model_data = viewer.model_data.get(picked_object.userData.model_name);
       intensity_data = model_data.intensity_data[0];
 
-      if (intensity_data) {
-        if (paint) {
-          value = parseFloat($("#paint-value").val());
+      $("#pick-index").html(intensityData.values[pick_info.index].toPrecision(4));
 
-          if (BrainBrowser.utils.isNumeric(value)) {
-            viewer.setIntensity(pick_info.index, value);
-          }
-        }
+      // if (intensity_data) {
+      //   if (paint) {
+      //     value = parseFloat($("#paint-value").val());
 
-        value = intensity_data.values[pick_info.index];
-        $("#pick-value").val(value.toString().slice(0, 7));
-        $("#pick-color").css("background-color", "#" + viewer.color_map.colorFromValue(value, {
-          hex: true,
-          min: intensity_data.range_min,
-          max: intensity_data.range_max
-        }));
-        $("#pick-label").html(text);
-      }
+      //     if (BrainBrowser.utils.isNumeric(value)) {
+      //       viewer.setIntensity(pick_info.index, value);
+      //     }
+      //   }
+
+      //   value = intensity_data.values[pick_info.index];
+      //   $("#pick-value").val(value.toString().slice(0, 7));
+      //   $("#pick-color").css("background-color", "#" + viewer.color_map.colorFromValue(value, {
+      //     hex: true,
+      //     min: intensity_data.range_min,
+      //     max: intensity_data.range_max
+      //   }));
+      //   $("#pick-label").html(text);
+      // }
 
     } else {
       picked_object = null;
