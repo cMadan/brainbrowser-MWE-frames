@@ -187,7 +187,7 @@ for (surf=0; surf<modelUrl.length; surf++) {
   }
 
   $("#brainbrowser").click(function(event) {
-    // trying something
+    // CRM this line makes it SHIFT+click vs. just click
     //if (!event.shiftKey && !event.ctrlKey) return;
       pick(viewer.mouse.x, viewer.mouse.y, event.ctrlKey);
   });
