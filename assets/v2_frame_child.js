@@ -157,7 +157,7 @@ function handleBrainz(viewer) {
     });
   };
   };
-};
+});
 
   function pick(x,y,paint) {
     if (viewer.model.children.length === 0) return;
