@@ -146,7 +146,8 @@ function handleBrainz(viewer) {
     });
   };
 
-  for (att=0; att<50; att++) {
+  viewer.addEventListener("displaymodel", function(event) {
+  console.log(event.model_data);
   surf=0;
   while (surf < modelUrl.length) {
     viewer.loadIntensityDataFromURL(overlayUrl[surf], {
@@ -156,9 +157,8 @@ function handleBrainz(viewer) {
     });
     surf++;
   }
-  // even with hack, maybe can stop it after they are both loaded?
-  }
-  
+  });
+
 
 
   function pick(x,y,paint) {
