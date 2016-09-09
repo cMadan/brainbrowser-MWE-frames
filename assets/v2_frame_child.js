@@ -145,18 +145,28 @@ function handleBrainz(viewer) {
       format: modelFormat,
     });
   };
-  for (att=0; att<20; att++) {
-  surf=0;
-  while (surf < modelUrl.length) {
-    viewer.loadIntensityDataFromURL(overlayUrl[surf], {
-      format: overlayFormat,
-      name: overlayFname[surf],
-      model_name: modelFname[surf],
-    });
-    surf++;
-  }
-  }
-  
+
+function waitForElement(){
+    if(viewer.model.children.length !== modelUrl.length){
+      // wait for models to load
+      surf=0;
+
+      while (surf < modelUrl.length) {
+        viewer.loadIntensityDataFromURL(overlayUrl[surf], {
+          format: overlayFormat,
+          name: overlayFname[surf],
+          model_name: modelFname[surf],
+        });
+        surf++;
+      }
+
+    }
+    else{
+        setTimeout(function(){
+            waitForElement();
+        },250);
+    }
+}  
 
 
   function pick(x,y,paint) {
