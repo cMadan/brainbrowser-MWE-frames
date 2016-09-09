@@ -147,7 +147,7 @@ function handleBrainz(viewer) {
   };
 
   viewer.addEventListener("displaymodel", function(event) {
-  console.log(event.model_data);
+  console.log(event.model_data.name);
   surf=0;
   while (surf < modelUrl.length) {
     viewer.loadIntensityDataFromURL(overlayUrl[surf], {
