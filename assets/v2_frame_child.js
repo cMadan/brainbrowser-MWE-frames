@@ -145,6 +145,21 @@ f=0;
     }
   });
 //};
+f=1;
+//for (f=0; f<modelUrl.length; f++) {
+  console.log(f);
+  // Load a model into the scene.
+  viewer.loadModelFromURL(modelUrl[f], {
+    format: modelFormat,
+
+    complete: function(){
+      viewer.loadIntensityDataFromURL(overlayUrl[f], {
+        format: overlayFormat,
+
+        name: "overlay"
+      });
+    }
+  });
 
   // CRM re-adding pick functionality
   function pick(x,y,paint) {
