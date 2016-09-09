@@ -56,7 +56,10 @@ else {
 modelFormat = format;
 urlsplit = overlayUrl.split('.');
 ext = urlsplit.slice(-1).pop();
-if (ext == 'asc') {
+if (ext == 'thickness' || ext == 'curv') {
+  format = 'freesurferbin';
+}
+else if (ext == 'asc') {
   format = 'freesurferasc';
 }
 else {
