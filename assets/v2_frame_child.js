@@ -153,8 +153,6 @@ f=1;
     complete: function(){
       viewer.loadIntensityDataFromURL(overlayUrl[f], {
         format: overlayFormat,
-
-        name: "overlay"
       });
     }
   });
