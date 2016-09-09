@@ -1,1 +1,1 @@
-console.log($('#view3d'))
+console.log($('#view3d').contents().find("#brainbrowser"))
