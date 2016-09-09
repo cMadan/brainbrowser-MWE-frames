@@ -144,7 +144,6 @@ function handleBrainz(viewer) {
     viewer.loadModelFromURL(modelUrl[surf], {
       format: modelFormat,
     });
-  };
 
   // wait until the model loads, then add the respective overlay
   viewer.addEventListener("displaymodel", function(event) {
@@ -157,6 +156,7 @@ function handleBrainz(viewer) {
       model_name: modelFname[surf],
     });
   });
+  };
 
 
 
