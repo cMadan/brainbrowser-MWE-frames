@@ -88,17 +88,15 @@ BrainBrowser.config.get("color_maps").forEach(function(val, idx, arr){colormaps[
 
 // Pulled out this function from the start call so that it's not so nested.
 function handleBrainz(viewer) {
-  var meshgui;
+  //var meshgui;
   window.viewer = viewer;
-  window.gui = gui;
+  //window.gui = gui;
 
   //Add an event listener.
   viewer.addEventListener('displaymodel', function(brainBrowserModel) {
     window.brainBrowserModel = brainBrowserModel;
     // meshgui = gui.addFolder(brainBrowserModel.model_data.name);
     // meshgui.open();
-
-    meshgui.hide();
 
   });
 
