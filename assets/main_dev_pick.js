@@ -143,6 +143,7 @@ function pick(x,y) {
   var model_data, intensity_data;
   var value, label, text;
 
+  console.log(pick_info)
   if (pick_info) {
     $("#pick-x").html(pick_info.point.x.toPrecision(4));
     $("#pick-y").html(pick_info.point.y.toPrecision(4));
@@ -187,7 +188,7 @@ function pick(x,y) {
 
 $("#brainbrowser").click(function(event) {
   if (!event.shiftKey && !event.ctrlKey) return;
-  pick(viewer.mouse.x, viewer.mouse.y, event.ctrlKey);
+  viewer.pick(viewer.mouse.x, viewer.mouse.y, event.ctrlKey);
 });
 
 
