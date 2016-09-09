@@ -133,106 +133,111 @@ function handleBrainz(viewer) {
       });
     }
   });
-    // CRM re-adding pick functionality
-    function pick(x, y, paint) {
-      if (viewer.model.children.length === 0) return;
 
-      var annotation_display = $("#annotation-display");
-      var media = $("#annotation-media");
-      var pick_info = viewer.pick(x, y);
-      var model_data, intensity_data;
-      var annotation_info;
-      var value, label, text;
+  // CRM re-adding pick functionality
+  function pick(x, y, paint) {
+    if (viewer.model.children.length === 0) return;
 
-      if (pick_info) {
-        $("#pick-x").html(pick_info.point.x.toPrecision(4));
-        $("#pick-y").html(pick_info.point.y.toPrecision(4));
-        $("#pick-z").html(pick_info.point.z.toPrecision(4));
-        $("#pick-index").html(pick_info.index);
-        $("#annotation-wrapper").show();
+    var annotation_display = $("#annotation-display");
+    var media = $("#annotation-media");
+    var pick_info = viewer.pick(x, y);
+    var model_data, intensity_data;
+    var annotation_info;
+    var value, label, text;
 
-        picked_object = pick_info.object;
-        model_data = viewer.model_data.get(picked_object.userData.model_name);
-        intensity_data = model_data.intensity_data[0];
+    if (pick_info) {
+      $("#pick-x").html(pick_info.point.x.toPrecision(4));
+      $("#pick-y").html(pick_info.point.y.toPrecision(4));
+      $("#pick-z").html(pick_info.point.z.toPrecision(4));
+      $("#pick-index").html(pick_info.index);
+      $("#annotation-wrapper").show();
 
-        if (intensity_data) {
-          if (paint) {
-            value = parseFloat($("#paint-value").val());
+      picked_object = pick_info.object;
+      model_data = viewer.model_data.get(picked_object.userData.model_name);
+      intensity_data = model_data.intensity_data[0];
 
-            if (BrainBrowser.utils.isNumeric(value)) {
-              viewer.setIntensity(pick_info.index, value);
-            }
+      if (intensity_data) {
+        if (paint) {
+          value = parseFloat($("#paint-value").val());
+
+          if (BrainBrowser.utils.isNumeric(value)) {
+            viewer.setIntensity(pick_info.index, value);
           }
-
-          value = intensity_data.values[pick_info.index];
-          $("#pick-value").val(value.toString().slice(0, 7));
-          $("#pick-color").css("background-color", "#" + viewer.color_map.colorFromValue(value, {
-            hex: true,
-            min: intensity_data.range_min,
-            max: intensity_data.range_max
-          }));
-          label = atlas_labels[value];
-          if (label) {
-            text = label + '<BR><a target="_blank" href="http://www.ncbi.nlm.nih.gov/pubmed/?term=' +
-              label.split(/\s+/).join("+") +
-              '">Search on PubMed</a>';
-            text += '<BR><a target="_blank" href="http://scholar.google.com/scholar?q=' +
-              label.split(/\s+/).join("+") +
-              '">Search on Google Scholar</a>';
-          } else {
-            text = "None";
-          }
-          $("#pick-label").html(text);
         }
 
-        annotation_info = picked_object.userData.annotation_info;
-
-        if (annotation_info) {
-          viewer.annotations.activate(annotation_info.vertex, {
-            model_name: annotation_info.model_name
-          });
+        value = intensity_data.values[pick_info.index];
+        $("#pick-value").val(value.toString().slice(0, 7));
+        $("#pick-color").css("background-color", "#" + viewer.color_map.colorFromValue(value, {
+          hex: true,
+          min: intensity_data.range_min,
+          max: intensity_data.range_max
+        }));
+        label = atlas_labels[value];
+        if (label) {
+          text = label + '<BR><a target="_blank" href="http://www.ncbi.nlm.nih.gov/pubmed/?term=' +
+            label.split(/\s+/).join("+") +
+            '">Search on PubMed</a>';
+          text += '<BR><a target="_blank" href="http://scholar.google.com/scholar?q=' +
+            label.split(/\s+/).join("+") +
+            '">Search on Google Scholar</a>';
         } else {
-          annotation_info = { data : {} };
+          text = "None";
         }
-
-        $("#annotation-image").val(annotation_info.data.image);
-        $("#annotation-url").val(annotation_info.data.url);
-        $("#annotation-text").val(annotation_info.data.text);
-
-        annotation_display.hide();
-        media.html("");
-
-        if (annotation_info.data.image) {
-          var image = new Image();
-          image.height = 200;
-          image.src = annotation_info.data.image;
-          annotation_display.show();
-          media.append(image);
-        }
-        if (annotation_info.data.url) {
-          annotation_display.show();
-          media.append($('<div><a href="' + annotation_info.data.url + '" target="_blank">' + annotation_info.data.url + '</a></div>'));
-        }
-
-        if (annotation_info.data.text) {
-          annotation_display.show();
-          media.append($('<div>' + annotation_info.data.text + '</div>'));
-        }
-
-      } else {
-        picked_object = null;
-        $("#pick-x").html("");
-        $("#pick-y").html("");
-        $("#pick-z").html("");
-        $("#pick-index").html("");
-        $("#pick-value").val("");
-        $("#pick-color").css("background-color", "#000000");
-        $("#annotation-wrapper").hide();
-        $("#annotation-display").hide();
+        $("#pick-label").html(text);
       }
 
-      viewer.updated = true;
+      annotation_info = picked_object.userData.annotation_info;
+
+      if (annotation_info) {
+        viewer.annotations.activate(annotation_info.vertex, {
+          model_name: annotation_info.model_name
+        });
+      } else {
+        annotation_info = { data : {} };
+      }
+
+      $("#annotation-image").val(annotation_info.data.image);
+      $("#annotation-url").val(annotation_info.data.url);
+      $("#annotation-text").val(annotation_info.data.text);
+
+      annotation_display.hide();
+      media.html("");
+
+      if (annotation_info.data.image) {
+        var image = new Image();
+        image.height = 200;
+        image.src = annotation_info.data.image;
+        annotation_display.show();
+        media.append(image);
+      }
+      if (annotation_info.data.url) {
+        annotation_display.show();
+        media.append($('<div><a href="' + annotation_info.data.url + '" target="_blank">' + annotation_info.data.url + '</a></div>'));
+      }
+
+      if (annotation_info.data.text) {
+        annotation_display.show();
+        media.append($('<div>' + annotation_info.data.text + '</div>'));
+      }
+
+    } else {
+      picked_object = null;
+      $("#pick-x").html("");
+      $("#pick-y").html("");
+      $("#pick-z").html("");
+      $("#pick-index").html("");
+      $("#pick-value").val("");
+      $("#pick-color").css("background-color", "#000000");
+      $("#annotation-wrapper").hide();
+      $("#annotation-display").hide();
     }
+
+    viewer.updated = true;
+  }
+  $("#brainbrowser").click(function(event) {
+    if (!event.shiftKey && !event.ctrlKey) return;
+    pick(viewer.mouse.x, viewer.mouse.y, event.ctrlKey);
+  });
 
 }
 
