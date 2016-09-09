@@ -147,15 +147,11 @@ f=0;
   viewer.loadIntensityDataFromURL(overlayUrl[f], {
     format: overlayFormat,
     name: overlayFname[f],
-    model_name: modelFname[f]
-  });
-  }
-  });
-//};
+    model_name: modelFname[f],
+    complete: function() {
 
-f=1;
-  // Load a model into the scene.
-  viewer.loadModelFromURL(modelUrl[f], {
+
+        viewer.loadModelFromURL(modelUrl[f], {
     format: modelFormat,
   complete: function() {
   viewer.loadIntensityDataFromURL(overlayUrl[f], {
@@ -166,6 +162,16 @@ f=1;
   }
 
   });
+        
+    }
+  });
+  }
+  });
+//};
+
+f=1;
+  // Load a model into the scene.
+
 
   // CRM re-adding pick functionality
   function pick(x,y,paint) {
