@@ -190,7 +190,24 @@ function handleBrainz(viewer) {
     if (!event.shiftKey && !event.ctrlKey) return;
       pick(viewer.mouse.x, viewer.mouse.y, event.ctrlKey);
   });
+  document.getElementById("brainbrowser").addEventListener("touchend", function(event) {
+    var touch = event.changedTouches[0];
+    var offset = BrainBrowser.utils.getOffset(this);
+    var x, y;
 
+    if (touch.pageX !== undefined) {
+      x = touch.pageX;
+      y = touch.pageY;
+    } else {
+      x = touch.clientX + window.pageXOffset;
+      y = touch.clientY + window.pageYOffset;
+    }
+
+    x = x - offset.left;
+    y = y - offset.top;
+
+    pick(x, y, true);
+  }, false);
 }
 
 
