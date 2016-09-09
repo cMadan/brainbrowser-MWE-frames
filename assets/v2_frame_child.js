@@ -42,12 +42,14 @@ BrainBrowser.SurfaceViewer.start('brainbrowser', handleBrainz);
 var gui = new dat.GUI();
 var inputs = queryStringToHash();
 
-var modelUrl = inputs.model || './models/vtk/freesurfer_curvature.vtk'
-var overlayUrl = inputs.overlay || './models/vertices.csv'
+var modelUrl = inputs.model
+var overlayUrl = inputs.overlay
+//if multiple input models, need to split then
+
 // determine model/overlay file formats
 urlsplit = modelUrl.split('.');
 ext = urlsplit.slice(-1).pop();
-if (ext == 'pial' || ext == 'white') {
+if (ext == 'pial' || ext == 'white' || ext == 'inflated') {
   format = 'freesurferbin';
 }
 else {
