@@ -154,6 +154,7 @@ f=0;
   }
   });
 //};
+f=1;
   sleep(5000);
   // Load a model into the scene.
   viewer.loadModelFromURL(modelUrl[f], {
