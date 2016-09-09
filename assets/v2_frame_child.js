@@ -139,6 +139,8 @@ f=0;
     complete: function(){
       viewer.loadIntensityDataFromURL(overlayUrl[f], {
         format: overlayFormat,
+
+        name: overlayUrl[f]
       });
     }
   });
@@ -153,6 +155,8 @@ f=1;
     complete: function(){
       viewer.loadIntensityDataFromURL(overlayUrl[f], {
         format: overlayFormat,
+
+        name: overlayUrl[f]
       });
     }
   });
