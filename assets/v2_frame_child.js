@@ -133,7 +133,8 @@ f=0;
 //for (f=0; f<modelUrl.length; f++) {
   console.log(f);
   // Load a model into the scene.
-  viewer.loadModelFromURL(modelUrl[f], {
+  complete: function(){
+    viewer.loadModelFromURL(modelUrl[f], {
     format: modelFormat,
 
     complete: function(){
@@ -144,12 +145,14 @@ f=0;
       });
     }
   });
+  }
 //};
 f=1;
 //for (f=0; f<modelUrl.length; f++) {
   console.log(f);
   // Load a model into the scene.
-  viewer.loadModelFromURL(modelUrl[f], {
+  complete: function(){
+    viewer.loadModelFromURL(modelUrl[f], {
     format: modelFormat,
 
     complete: function(){
@@ -160,7 +163,7 @@ f=1;
       });
     }
   });
-
+}
   // CRM re-adding pick functionality
   function pick(x,y,paint) {
     if (viewer.model.children.length === 0) return;
