@@ -51,12 +51,10 @@ overlayUrl = overlayUrl.split(';');
 modelFname = modelUrl.slice(0);
 overlayFname = overlayUrl.slice(0);
 for (f=0; f<modelUrl.length; f++) {
-  temp = modelUrl[f].split('/');
-  modelFname[f] = temp.slice(-1).pop();
+  modelFname[f] = modelUrl[f].split('/').slice(-1).pop();
 }
 for (f=0; f<overlayUrl.length; f++) {
-  temp = overlayUrl[f].split('/');
-  overlayFname[f] = temp.slice(-1).pop();
+  overlayFname[f] = overlayUrl[f].split('/').slice(-1).pop();
 }
 
 
