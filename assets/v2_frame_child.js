@@ -136,64 +136,6 @@ function handleBrainz(viewer) {
   viewer.loadColorMapFromURL(BrainBrowser.config.get("color_maps")[0].url);
 
 
-
-  // CRM re-adding pick functionality
-  function pick(x,y,paint) {
-    if (viewer.model.children.length === 0) return;
-
-    var pick_info = viewer.pick(x,y);
-    var value, label, text;
-
-    if (pick_info) {
-      $("#pick-x").html(pick_info.point.x.toPrecision(4));
-      $("#pick-y").html(pick_info.point.y.toPrecision(4));
-      $("#pick-z").html(pick_info.point.z.toPrecision(4));
-      $("#pick-index").html(pick_info.index);
-      $("#pick-value").html(intensityData.values[pick_info.index].toPrecision(4));
-
-    } else {
-      picked_object = null;
-      $("#pick-x").html("");
-      $("#pick-y").html("");
-      $("#pick-z").html("");
-      $("#pick-index").html("");
-      $("#pick-value").val("");
-      $("#pick-color").css("background-color", "#000000");
-    }
-
-    viewer.updated = true;
-  }
-
-
-  $("#brainbrowser").click(function(event) {
-    if (!event.shiftKey && !event.ctrlKey) return;
-      pick(viewer.mouse.x, viewer.mouse.y, event.ctrlKey);
-  });
-  document.getElementById("brainbrowser").addEventListener("touchend", function(event) {
-    var touch = event.changedTouches[0];
-    var offset = BrainBrowser.utils.getOffset(this);
-    var x, y;
-
-    if (touch.pageX !== undefined) {
-      x = touch.pageX;
-      y = touch.pageY;
-    } else {
-      x = touch.clientX + window.pageXOffset;
-      y = touch.clientY + window.pageYOffset;
-    }
-
-    x = x - offset.left;
-    y = y - offset.top;
-
-    pick(x, y, true);
-  }, false);
-}
-
-// taken from https://css-tricks.com/snippets/jquery/get-query-params-object/
-function queryStringToHash(str){
-  return (str || document.location.search).replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0];
-}
-
 // load multi models
 f=0;
 //for (f=0; f<modelUrl.length; f++) {
@@ -226,3 +168,59 @@ f=0;
 //       });
 //     }
 //   });
+
+  // CRM re-adding pick functionality
+  function pick(x,y,paint) {
+    if (viewer.model.children.length === 0) return;
+
+    var pick_info = viewer.pick(x,y);
+    var value, label, text;
+
+    if (pick_info) {
+      $("#pick-x").html(pick_info.point.x.toPrecision(4));
+      $("#pick-y").html(pick_info.point.y.toPrecision(4));
+      $("#pick-z").html(pick_info.point.z.toPrecision(4));
+      $("#pick-index").html(pick_info.index);
+      $("#pick-value").html(intensityData.values[pick_info.index].toPrecision(4));
+
+    } else {
+      picked_object = null;
+      $("#pick-x").html("");
+      $("#pick-y").html("");
+      $("#pick-z").html("");
+      $("#pick-index").html("");
+      $("#pick-value").val("");
+      $("#pick-color").css("background-color", "#000000");
+    }
+
+    viewer.updated = true;
+  }
+
+  $("#brainbrowser").click(function(event) {
+    if (!event.shiftKey && !event.ctrlKey) return;
+      pick(viewer.mouse.x, viewer.mouse.y, event.ctrlKey);
+  });
+  document.getElementById("brainbrowser").addEventListener("touchend", function(event) {
+    var touch = event.changedTouches[0];
+    var offset = BrainBrowser.utils.getOffset(this);
+    var x, y;
+
+    if (touch.pageX !== undefined) {
+      x = touch.pageX;
+      y = touch.pageY;
+    } else {
+      x = touch.clientX + window.pageXOffset;
+      y = touch.clientY + window.pageYOffset;
+    }
+
+    x = x - offset.left;
+    y = y - offset.top;
+
+    pick(x, y, true);
+  }, false);
+}
+
+// taken from https://css-tricks.com/snippets/jquery/get-query-params-object/
+function queryStringToHash(str){
+  return (str || document.location.search).replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0];
+}
