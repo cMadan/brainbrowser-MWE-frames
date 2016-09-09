@@ -127,14 +127,14 @@ function handleBrainz(viewer) {
   viewer.loadColorMapFromURL(BrainBrowser.config.get("color_maps")[0].url);
 
 // load multi models
-var f;
-for (f=0; f<modelUrl.length; f++) {
+var surf;
+for (surf=0; surf<modelUrl.length; surf++) {
   // Load a model into the scene.
-  viewer.loadModelFromURL(modelUrl[f], {
+  viewer.loadModelFromURL(modelUrl[surf], {
     format: modelFormat,
 
     complete: function(){
-      viewer.loadIntensityDataFromURL(overlayUrl[f], {
+      viewer.loadIntensityDataFromURL(overlayUrl[surf], {
         format: overlayFormat,
         name: "overlay"
       });
