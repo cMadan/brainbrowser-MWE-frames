@@ -101,6 +101,36 @@ function handleBrainz(viewer) {
 
   });
 
+  viewer.addEventListener("loadcolormap", function(event) {
+    viewer.color_map.clamp = false; 
+  });
+
+  // Start rendering the scene.
+  viewer.render();
+  viewer.setClearColor(0XFFFFFF);
+  viewer.loadColorMapFromURL(BrainBrowser.config.get("color_maps")[0].url);
+
+
+  // load multi models
+  surf = 0;
+for (surf=0; surf<modelUrl.length; surf++) {
+    // Load a model into the scene.
+    viewer.loadModelFromURL(modelUrl[surf], {
+      format: modelFormat,
+    });
+
+  // wait until model loads, then add respective overlay
+  viewer.addEventListener("displaymodel", function(event) {
+    // get the surf number for model that just loaded
+    surf=modelFname.indexOf(event.model_data.name);
+    // load overlay
+    viewer.loadIntensityDataFromURL(overlayUrl[surf], {
+      format: overlayFormat,
+      name: overlayFname[surf],
+      model_name: modelFname[surf],
+    });
+  });
+
   viewer.addEventListener("loadintensitydata", function(event) {
     var model_data = event.model_data;
     var intensity_data = event.intensity_data;
@@ -127,36 +157,9 @@ function handleBrainz(viewer) {
     })
   });
 
-  viewer.addEventListener("loadcolormap", function(event) {
-    viewer.color_map.clamp = false; 
-  });
-
-  // Start rendering the scene.
-  viewer.render();
-  viewer.setClearColor(0XFFFFFF);
-  viewer.loadColorMapFromURL(BrainBrowser.config.get("color_maps")[0].url);
 
 
-  // load multi models
-  surf = 0;
-  for (surf=0; surf<modelUrl.length; surf++) {
-    // Load a model into the scene.
-    viewer.loadModelFromURL(modelUrl[surf], {
-      format: modelFormat,
-    });
-
-  // wait until model loads, then add respective overlay
-  viewer.addEventListener("displaymodel", function(event) {
-    // get the surf number for model that just loaded
-    surf=modelFname.indexOf(event.model_data.name);
-    // load overlay
-    viewer.loadIntensityDataFromURL(overlayUrl[surf], {
-      format: overlayFormat,
-      name: overlayFname[surf],
-      model_name: modelFname[surf],
-    });
-  });
-  };
+};
 
 
   function pick(x,y,paint) {
