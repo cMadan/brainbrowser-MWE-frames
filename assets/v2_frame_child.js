@@ -187,7 +187,8 @@ for (surf=0; surf<modelUrl.length; surf++) {
   }
 
   $("#brainbrowser").click(function(event) {
-    if (!event.shiftKey && !event.ctrlKey) return;
+    // trying something
+    //if (!event.shiftKey && !event.ctrlKey) return;
       pick(viewer.mouse.x, viewer.mouse.y, event.ctrlKey);
   });
   document.getElementById("brainbrowser").addEventListener("touchend", function(event) {
