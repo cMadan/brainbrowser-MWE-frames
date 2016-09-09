@@ -146,7 +146,7 @@ function handleBrainz(viewer) {
     });
   };
 
- $( window ).load(function() {
+$( document ).ready(function() {
 
   for (att=0; att<5; att++) { // stupid hack to force things to load
   for (surf=0; surf<modelUrl.length; surf++) {
