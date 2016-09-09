@@ -47,6 +47,15 @@ var modelUrl = inputs.model
 var overlayUrl = inputs.overlay
 modelUrl = modelUrl.split(';');
 overlayUrl = overlayUrl.split(';');
+for (f=0; f<modelUrl.length; f++) {
+  temp = modelUrl[f].split('/');
+  modelFname[f] = temp.slice(-1).pop();
+}
+for (f=0; f<overlayUrl.length; f++) {
+  temp = overlayUrl[f].split('/');
+  overlayFname[f] = temp.slice(-1).pop();
+}
+
 
 // determine model/overlay file formats
 urlsplit = modelUrl[0].split('.');
@@ -186,7 +195,6 @@ function queryStringToHash(str){
 }
 
 // load multi models
-var f;
 f=0;
 //for (f=0; f<modelUrl.length; f++) {
   console.log(f);
@@ -197,7 +205,8 @@ f=0;
     complete: function(){
       viewer.loadIntensityDataFromURL(overlayUrl[f], {
         format: overlayFormat,
-        name: "thick1"
+        name: overlayFname[f],
+        model_name: modelFname[f]
       });
     }
   });
