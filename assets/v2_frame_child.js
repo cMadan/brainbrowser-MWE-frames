@@ -138,29 +138,21 @@ function handleBrainz(viewer) {
 
 
   // load multi models
-  var surf;
-  for (surf=0; surf<modelUrl.length; surf++) {
+  surf = 0
+  while (surf<modelUrl.length) {
     // Load a model into the scene.
     viewer.loadModelFromURL(modelUrl[surf], {
       format: modelFormat,
     });
-  };
-
-$( document ).ready(function() {
-
-  for (att=0; att<5; att++) { // stupid hack to force things to load
-  for (surf=0; surf<modelUrl.length; surf++) {
-window.setTimeout(function(){
-                 // do whatever you want to do     
     viewer.loadIntensityDataFromURL(overlayUrl[surf], {
       format: overlayFormat,
       name: overlayFname[surf],
       model_name: modelFname[surf],
     });
-                  }, 600);
+    surf++;
+    // for does asynch actions, while is okay?
   };
-  };
-});
+
 
   function pick(x,y,paint) {
     if (viewer.model.children.length === 0) return;
