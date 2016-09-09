@@ -39,7 +39,7 @@ BrainBrowser.config.set("color_maps", [
 
 BrainBrowser.SurfaceViewer.start('brainbrowser', handleBrainz);
 
-var gui = new dat.GUI();
+//var gui = new dat.GUI();
 var inputs = queryStringToHash();
 
 //if multiple input models, need to split then
