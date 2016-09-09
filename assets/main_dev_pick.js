@@ -236,7 +236,7 @@ function handleBrainz(viewer) {
   }
 }
 
-$("body").addEventListener("click",viewer.pick(viewer.mouse.x, viewer.mouse.y));
+$("body").on(viewer.pick(viewer.mouse.x, viewer.mouse.y));
 
 
 // taken from https://css-tricks.com/snippets/jquery/get-query-params-object/
