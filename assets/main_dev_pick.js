@@ -133,7 +133,7 @@ function handleBrainz(viewer) {
       });
     }
   });
-}
+
 
 // CRM re-adding pick functionality
 function pick(x,y) {
@@ -183,6 +183,7 @@ function pick(x,y) {
   }
 
   viewer.updated = true;
+}
 }
 
 $("#brainbrowser").click(function(event) {
