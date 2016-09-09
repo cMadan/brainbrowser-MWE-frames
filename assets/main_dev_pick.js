@@ -139,7 +139,7 @@ function handleBrainz(viewer) {
 function pick(x,y) {
   if (viewer.model.children.length === 0) return;
 
-  var pick_info = viewer.pick(x, y);
+  var pick_info = pick(x, y);
   var model_data, intensity_data;
   var value, label, text;
 
@@ -169,17 +169,6 @@ function pick(x,y) {
         min: intensity_data.range_min,
         max: intensity_data.range_max
       }));
-      label = atlas_labels[value];
-      if (label) {
-        text = label + '<BR><a target="_blank" href="http://www.ncbi.nlm.nih.gov/pubmed/?term=' +
-          label.split(/\s+/).join("+") +
-          '">Search on PubMed</a>';
-        text += '<BR><a target="_blank" href="http://scholar.google.com/scholar?q=' +
-          label.split(/\s+/).join("+") +
-          '">Search on Google Scholar</a>';
-      } else {
-        text = "None";
-      }
       $("#pick-label").html(text);
     }
 
@@ -191,8 +180,6 @@ function pick(x,y) {
     $("#pick-index").html("");
     $("#pick-value").val("");
     $("#pick-color").css("background-color", "#000000");
-    $("#annotation-wrapper").hide();
-    $("#annotation-display").hide();
   }
 
   viewer.updated = true;
