@@ -101,31 +101,31 @@ function handleBrainz(viewer) {
 
   });
 
-  viewer.addEventListener("loadintensitydata", function(event) {
-    var model_data = event.model_data;
-    var intensity_data = event.intensity_data;
-    intensity_data.transparency = 1
-    intensity_data.colormap_name = "Spectral"
-    window.intensityData = intensity_data;
-    overlayGui = meshgui.addFolder(intensity_data.name);
-    overlayGui.open();
-    var vmin = overlayGui.add(intensity_data, 'min');
-    var vmax = overlayGui.add(intensity_data, 'max');
-    var transparency = overlayGui.add(intensity_data, 'transparency',0,1);
-    var cmap = overlayGui.add(intensity_data, "colormap_name", Object.keys(colormaps))
-    vmin.onChange(function(newMin){
-      viewer.setIntensityRange(newMin, intensity_data.max)
-    })
-    vmax.onChange(function(newMax){
-      viewer.setIntensityRange(intensity_data.min, newMax)
-    })
-    transparency.onChange(function(newT){
-        viewer.setTransparency(newT, {shape_name: model_data.name})
-    })
-    cmap.onChange(function(newC){
-        viewer.loadColorMapFromURL(colormaps[newC])
-    })
-  });
+  // viewer.addEventListener("loadintensitydata", function(event) {
+  //   var model_data = event.model_data;
+  //   var intensity_data = event.intensity_data;
+  //   intensity_data.transparency = 1
+  //   intensity_data.colormap_name = "Spectral"
+  //   window.intensityData = intensity_data;
+  //   overlayGui = meshgui.addFolder(intensity_data.name);
+  //   overlayGui.open();
+  //   var vmin = overlayGui.add(intensity_data, 'min');
+  //   var vmax = overlayGui.add(intensity_data, 'max');
+  //   var transparency = overlayGui.add(intensity_data, 'transparency',0,1);
+  //   var cmap = overlayGui.add(intensity_data, "colormap_name", Object.keys(colormaps))
+  //   vmin.onChange(function(newMin){
+  //     viewer.setIntensityRange(newMin, intensity_data.max)
+  //   })
+  //   vmax.onChange(function(newMax){
+  //     viewer.setIntensityRange(intensity_data.min, newMax)
+  //   })
+  //   transparency.onChange(function(newT){
+  //       viewer.setTransparency(newT, {shape_name: model_data.name})
+  //   })
+  //   cmap.onChange(function(newC){
+  //       viewer.loadColorMapFromURL(colormaps[newC])
+  //   })
+  // });
 
   viewer.addEventListener("loadcolormap", function(event) {
     viewer.color_map.clamp = false; 
