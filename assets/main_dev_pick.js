@@ -136,7 +136,7 @@ function handleBrainz(viewer) {
 
 
   // CRM re-adding pick functionality
-  function pick(x,y) {
+  function pick(x,y,paint) {
     if (viewer.model.children.length === 0) return;
 
     var pick_info = viewer.pick(x,y);
