@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title></title>
-  <link rel="stylesheet" type="text/css" href="./assets/styles.css">
-  <script type="text/javascript" src="./brainbrowser-2.5.0/brainbrowser.surface-viewer.min.js"></script>
-</head>
 <body>
-  <div id="brainbrowser"></div>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.15.0/lodash.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5.1/dat.gui.min.js"></script>
-  <script type="text/javascript" src="./assets/main.js"></script>
+
+<iframe id="view3d" src="https://cmadan.github.io/brainbrowser-minimal-example/v2_pick_frame_child.html?model=https://www.cmadan.com/temp/mindcontrol/lh.pial;https://www.cmadan.com/temp/mindcontrol/rh.pial&overlay=https://www.cmadan.com/temp/mindcontrol/lh.thickness;https://www.cmadan.com/temp/mindcontrol/rh.thickness" height=800 width=800 border=0></iframe>
+
+<br />
+
+<div id="vertex-data">
+  <div>Surface: <span id="pick-fname" class="pick-data"></span></div>
+  <div>
+  X: <span id="pick-x" class="pick-data"></span>; 
+  Y: <span id="pick-y" class="pick-data"></span>; 
+  Z: <span id="pick-z" class="pick-data"></span>
+  </div>
+  <div>Vertex: <span id="pick-index" class="pick-data"></span></div>
+  <div>Value: <span id="pick-value" class="pick-data"></span></div>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript" src="./assets/v2_frame_parent.js"></script>
 </body>
 </html>

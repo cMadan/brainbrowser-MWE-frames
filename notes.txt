@@ -1,9 +1,10 @@
-20160907 CRM
+20160909 CRM
+
 # demos 
 vtk & csv:
-https://cmadan.github.io/brainbrowser-minimal-example/?model=https://dl.dropboxusercontent.com/u/9020198/roygbiv/arno/freesurfer_curvature.vtk&overlay=https://dl.dropboxusercontent.com/u/9020198/roygbiv/arno/vertices.csv
+https://cmadan.github.io/brainbrowser-minimal-example/v0_index.html?model=https://dl.dropboxusercontent.com/u/9020198/roygbiv/arno/freesurfer_curvature.vtk&overlay=https://dl.dropboxusercontent.com/u/9020198/roygbiv/arno/vertices.csv
 pial & thickness
-https://cmadan.github.io/brainbrowser-minimal-example/?model=https://www.cmadan.com/temp/mindcontrol/lh.pial&overlay=https://www.cmadan.com/temp/mindcontrol/lh.thickness
+https://cmadan.github.io/brainbrowser-minimal-example/v0_index.html?model=https://www.cmadan.com/temp/mindcontrol/lh.pial&overlay=https://www.cmadan.com/temp/mindcontrol/lh.thickness
 
 pick-pulls-data:
 https://cmadan.github.io/brainbrowser-minimal-example/pick.html?model=https://www.cmadan.com/temp/mindcontrol/lh.pial&overlay=https://www.cmadan.com/temp/mindcontrol/lh.thickness
