@@ -237,7 +237,7 @@ function handleBrainz(viewer) {
 }
 $("#brainbrowser").click(function(event) {
   if (!event.shiftKey && !event.ctrlKey) return;
-  viewer.pick(viewer.mouse.x, viewer.mouse.y, event.ctrlKey);
+  viewer.pick(viewer.mouse.x, viewer.mouse.y);
 });
 
 
