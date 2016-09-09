@@ -147,15 +147,13 @@ function handleBrainz(viewer) {
   };
 
   viewer.addEventListener("displaymodel", function(event) {
-  console.log(event.model_data.name);
-  surf=0;
-  while (surf < modelUrl.length) {
+  // get the surf number for the model that just loaded
+  surf=modelFname.indexOf(event.model_data.name);
     viewer.loadIntensityDataFromURL(overlayUrl[surf], {
       format: overlayFormat,
       name: overlayFname[surf],
       model_name: modelFname[surf],
     });
-    surf++;
   }
   });
 
