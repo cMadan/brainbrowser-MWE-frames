@@ -153,7 +153,7 @@ function handleBrainz(viewer) {
       model_data = viewer.model_data.get(picked_object.userData.model_name);
       intensity_data = model_data.intensity_data[0];
 
-      $("#pick-index").html(intensityData.values[pick_info.index].toPrecision(4));
+      $("#pick-value").html(intensityData.values[pick_info.index].toPrecision(4));
 
       // if (intensity_data) {
       //   if (paint) {
