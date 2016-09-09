@@ -138,17 +138,18 @@ function handleBrainz(viewer) {
 
 
 // load multi models
-for (f=0; f<modelUrl.length; f++) {
+var surf;
+for (surf=0; surf<modelUrl.length; surf++) {
   // Load a model into the scene.
-  viewer.loadModelFromURL(modelUrl[f], {
+  viewer.loadModelFromURL(modelUrl[surf], {
     format: modelFormat,
   });
 };
-for (f=0; f<modelUrl.length; f++) {
-  viewer.loadIntensityDataFromURL(overlayUrl[f], {
+for (surf=0; surf<modelUrl.length; surf++) {
+  viewer.loadIntensityDataFromURL(overlayUrl[surf], {
     format: overlayFormat,
-    name: overlayFname[f],
-    model_name: modelFname[f],
+    name: overlayFname[surf],
+    model_name: modelFname[surf],
   });
 };
 
