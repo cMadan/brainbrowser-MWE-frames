@@ -11,20 +11,20 @@
   <div>X: <span id="pick-x" class="pick-data"></span></div>
   <div>Y: <span id="pick-y" class="pick-data"></span></div>
   <div>Z: <span id="pick-z" class="pick-data"></span></div>
-  <div>Vertex number: <span id="pick-index" class="pick-data"></span></div>
+  <div>Vertex: <span id="pick-index" class="pick-data"></span></div>
   <div>Value: <span id="pick-value" class="pick-data"></span></div>
 </div>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 <script type="text/javascript">
-  $('#view3d').contents().find("#brainbrowser").click(function(event) {
-    $("#pick-x").html($('#view3d').contents().find('#pick-x').text());
-    $("#pick-y").html($('#view3d').contents().find('#pick-y').text());
-    $("#pick-z").html($('#view3d').contents().find('#pick-z').text());
-    $("#pick-index").html($('#view3d').contents().find('#pick-index').text());
-    $("#pick-value").html($('#view3d').contents().find('#pick-value').text());
-  });
+$('#view3d').contents().find("#brainbrowser").click(function(event) {
+	$("#pick-x").html($('#view3d').contents().find('#pick-x').text());
+	$("#pick-y").html($('#view3d').contents().find('#pick-y').text());
+	$("#pick-z").html($('#view3d').contents().find('#pick-z').text());
+	$("#pick-index").html($('#view3d').contents().find('#pick-index').text());
+	$("#pick-value").html($('#view3d').contents().find('#pick-value').text());
+});
 </script>
 
 </body>
