@@ -234,12 +234,11 @@ function handleBrainz(viewer) {
 
     viewer.updated = true;
   }
-  $("#brainbrowser").click(function(event) {
-    if (!event.shiftKey && !event.ctrlKey) return;
-    pick(viewer.mouse.x, viewer.mouse.y, event.ctrlKey);
-  });
-
 }
+$("#brainbrowser").click(function(event) {
+  if (!event.shiftKey && !event.ctrlKey) return;
+  pick(viewer.mouse.x, viewer.mouse.y, event.ctrlKey);
+});
 
 
 // taken from https://css-tricks.com/snippets/jquery/get-query-params-object/
