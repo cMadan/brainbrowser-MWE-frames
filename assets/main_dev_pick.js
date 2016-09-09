@@ -139,7 +139,7 @@ function handleBrainz(viewer) {
 function pick(x,y) {
   if (viewer.model.children.length === 0) return;
 
-  var pick_info = pick(x,y);
+  var pick_info = viewer.pick(x,y);
   var model_data, intensity_data;
   var value, label, text;
 
