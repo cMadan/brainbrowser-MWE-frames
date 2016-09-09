@@ -135,14 +135,11 @@ function handleBrainz(viewer) {
   });
 
   // CRM re-adding pick functionality
-  function pick(x, y) {
+  function pick(x,y) {
     if (viewer.model.children.length === 0) return;
 
-    var annotation_display = $("#annotation-display");
-    var media = $("#annotation-media");
     var pick_info = viewer.pick(x, y);
     var model_data, intensity_data;
-    var annotation_info;
     var value, label, text;
 
     if (pick_info) {
@@ -150,7 +147,6 @@ function handleBrainz(viewer) {
       $("#pick-y").html(pick_info.point.y.toPrecision(4));
       $("#pick-z").html(pick_info.point.z.toPrecision(4));
       $("#pick-index").html(pick_info.index);
-      $("#annotation-wrapper").show();
 
       picked_object = pick_info.object;
       model_data = viewer.model_data.get(picked_object.userData.model_name);
@@ -186,40 +182,6 @@ function handleBrainz(viewer) {
         $("#pick-label").html(text);
       }
 
-      annotation_info = picked_object.userData.annotation_info;
-
-      if (annotation_info) {
-        viewer.annotations.activate(annotation_info.vertex, {
-          model_name: annotation_info.model_name
-        });
-      } else {
-        annotation_info = { data : {} };
-      }
-
-      $("#annotation-image").val(annotation_info.data.image);
-      $("#annotation-url").val(annotation_info.data.url);
-      $("#annotation-text").val(annotation_info.data.text);
-
-      annotation_display.hide();
-      media.html("");
-
-      if (annotation_info.data.image) {
-        var image = new Image();
-        image.height = 200;
-        image.src = annotation_info.data.image;
-        annotation_display.show();
-        media.append(image);
-      }
-      if (annotation_info.data.url) {
-        annotation_display.show();
-        media.append($('<div><a href="' + annotation_info.data.url + '" target="_blank">' + annotation_info.data.url + '</a></div>'));
-      }
-
-      if (annotation_info.data.text) {
-        annotation_display.show();
-        media.append($('<div>' + annotation_info.data.text + '</div>'));
-      }
-
     } else {
       picked_object = null;
       $("#pick-x").html("");
@@ -236,7 +198,10 @@ function handleBrainz(viewer) {
   }
 }
 
-$("body").on(viewer.pick(viewer.mouse.x, viewer.mouse.y));
+$("#brainbrowser").click(function(event) {
+  if (!event.shiftKey && !event.ctrlKey) return;
+  viewer.pick(viewer.mouse.x, viewer.mouse.y, event.ctrlKey);
+});
 
 
 // taken from https://css-tricks.com/snippets/jquery/get-query-params-object/
