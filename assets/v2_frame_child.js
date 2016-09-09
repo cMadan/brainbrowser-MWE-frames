@@ -145,8 +145,8 @@ function handleBrainz(viewer) {
       format: modelFormat,
     });
   };
-  
-  for (att=0; att<20; att++) {
+
+  for (att=0; att<50; att++) {
   surf=0;
   while (surf < modelUrl.length) {
     viewer.loadIntensityDataFromURL(overlayUrl[surf], {
@@ -156,6 +156,7 @@ function handleBrainz(viewer) {
     });
     surf++;
   }
+  // even with hack, maybe can stop it after they are both loaded?
   }
   
 
@@ -179,8 +180,7 @@ function handleBrainz(viewer) {
       $("#pick-y").html("");
       $("#pick-z").html("");
       $("#pick-index").html("");
-      $("#pick-value").val("");
-      $("#pick-color").css("background-color", "#000000");
+      $("#pick-value").html("");
     }
 
     viewer.updated = true;
