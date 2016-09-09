@@ -140,23 +140,18 @@ function handleBrainz(viewer) {
 // load multi models
 f=0;
 //for (f=0; f<modelUrl.length; f++) {
-  console.log(f);
   // Load a model into the scene.
     viewer.loadModelFromURL(modelUrl[f], {
-    format: modelFormat,
-
-    complete: function(){
-      viewer.loadIntensityDataFromURL(overlayUrl[f], {
-        format: overlayFormat,
-        name: overlayFname[f],
-        model_name: modelFname[f]
-      });
-    }
+    format: modelFormat
+  });
+  viewer.loadIntensityDataFromURL(overlayUrl[f], {
+    format: overlayFormat,
+    name: overlayFname[f],
+    model_name: modelFname[f]
   });
 //};
 
 f=1;
-  console.log(f);
   // Load a model into the scene.
     viewer.loadModelFromURL(modelUrl[f], {
     format: modelFormat,
