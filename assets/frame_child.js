@@ -217,8 +217,3 @@ function handleBrainz(viewer) {
 function queryStringToHash(str){
   return (str || document.location.search).replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0];
 }
-
-// ping the parent that iframe is ready to go
-$(document).load(function() {   // or .ready()
-   parent.iframeloaded();
-}
