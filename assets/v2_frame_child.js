@@ -45,16 +45,17 @@ var inputs = queryStringToHash();
 //if multiple input models, need to split then
 var modelUrl = inputs.model
 var overlayUrl = inputs.overlay
-modelFname = modelUrl;
-overlayFname = overlayUrl;
 modelUrl = modelUrl.split(';');
 overlayUrl = overlayUrl.split(';');
-modelFname = modelFname[f].split('/');
-overlayFname = overlayFname[f].split('/');
+// need to shallow copy the elements
+modelFname = modelUrl.slice(0);
+overlayFname = overlayUrl.slice(0);
 for (f=0; f<modelUrl.length; f++) {
+  temp = modelUrl[f].split('/');
   modelFname[f] = temp.slice(-1).pop();
-ov}
+}
 for (f=0; f<overlayUrl.length; f++) {
+  temp = overlayUrl[f].split('/');
   overlayFname[f] = temp.slice(-1).pop();
 }
 
