@@ -132,7 +132,7 @@ function handleBrainz(viewer) {
         name: "Cortical Thickness"
       });
     }
-
+  });
     // CRM re-adding pick functionality
     function pick(x, y, paint) {
       if (viewer.model.children.length === 0) return;
@@ -234,9 +234,6 @@ function handleBrainz(viewer) {
       viewer.updated = true;
     }
 
-
-
-  });
 }
 
 
