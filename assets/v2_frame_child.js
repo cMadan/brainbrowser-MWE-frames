@@ -126,20 +126,20 @@ function handleBrainz(viewer) {
   viewer.setClearColor(0XFFFFFF);
   viewer.loadColorMapFromURL(BrainBrowser.config.get("color_maps")[0].url);
 
-
+// load multi models
+var f;
+for (f=0; f<modelUrl.length; f++) {}
   // Load a model into the scene.
-  viewer.loadModelFromURL(modelUrl, {
+  viewer.loadModelFromURL(modelUrl[f], {
     format: modelFormat,
 
     complete: function(){
-      viewer.loadIntensityDataFromURL(overlayUrl, {
+      viewer.loadIntensityDataFromURL(overlayUrl[f], {
         format: overlayFormat,
-
-        name: "Cortical Thickness"
       });
     }
   });
-
+}
 
   // CRM re-adding pick functionality
   function pick(x,y,paint) {
