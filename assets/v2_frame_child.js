@@ -144,21 +144,19 @@ function handleBrainz(viewer) {
     viewer.loadModelFromURL(modelUrl[surf], {
       format: modelFormat,
     });
-  };
 
-  // wait until the model loads, then add the respective overlay
+  // wait until model loads, then add respective overlay
   viewer.addEventListener("displaymodel", function(event) {
-    // get the surf number for the model that just loaded
+    // get the surf number for model that just loaded
     surf=modelFname.indexOf(event.model_data.name);
-    // stall
-    viewer.updateViewport();
-    // load the overlay
+    // load overlay
     viewer.loadIntensityDataFromURL(overlayUrl[surf], {
       format: overlayFormat,
       name: overlayFname[surf],
       model_name: modelFname[surf],
     });
   });
+  };
 
 
   function pick(x,y,paint) {
