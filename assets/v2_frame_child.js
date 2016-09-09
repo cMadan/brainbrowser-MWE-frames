@@ -42,10 +42,14 @@ BrainBrowser.SurfaceViewer.start('brainbrowser', handleBrainz);
 var gui = new dat.GUI();
 var inputs = queryStringToHash();
 
-var modelUrl = inputs.model || './models/vtk/freesurfer_curvature.vtk'
-var overlayUrl = inputs.overlay || './models/vertices.csv'
+//if multiple input models, need to split then
+var modelUrl = inputs.model
+var overlayUrl = inputs.overlay
+modelUrl = modelUrl.split(';');
+overlayUrl = overlayUrl.split(';');
+
 // determine model/overlay file formats
-urlsplit = modelUrl.split('.');
+urlsplit = modelUrl[0].split('.');
 ext = urlsplit.slice(-1).pop();
 if (ext == 'pial' || ext == 'white') {
   format = 'freesurferbin';
@@ -54,7 +58,7 @@ else {
   format = ext; // e.g., vtk
 }
 modelFormat = format;
-urlsplit = overlayUrl.split('.');
+urlsplit = overlayUrl[0].split('.');
 ext = urlsplit.slice(-1).pop();
 if (ext == 'thickness' || ext == 'curv') {
   format = 'freesurferbin';
@@ -124,14 +128,14 @@ function handleBrainz(viewer) {
 
 
   // Load a model into the scene.
-  viewer.loadModelFromURL(modelUrl, {
+  viewer.loadModelFromURL(modelUrl[0], {
     format: modelFormat,
 
     complete: function(){
-      viewer.loadIntensityDataFromURL(overlayUrl, {
+      viewer.loadIntensityDataFromURL(overlayUrl[0], {
         format: overlayFormat,
 
-        name: "Cortical Thickness"
+        name: "overlay"
       });
     }
   });
